@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: staging table for orders
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: id
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values:
+                - coupon
+                - credit_card
+                - bank_transfer
+                - gift_card
+      - name: amount
+        tests:
+          - not_null
+      - name: last_updated_dt
+        tests:
+          - not_null

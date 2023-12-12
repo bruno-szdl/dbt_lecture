@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: "This fact table combines data from orders and payments, linking each order with its payment details."
+    contract:
+        enforced: true
+    columns:
+      - name: id
+        data_type: int
+        description: "Unique identifier for each order."
+        tests:
+          - unique
+          - not_null
+        constraints:
+          - type: not_null
+          - type: primary_key
+          - type: check
+            expression: "id > 0"
+
+      - name: user_id
+        data_type: int
+        description: "Identifier for the user who placed the order."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: id
+        constraints:
+          - type: not_null
+          - type: check
+            expression: "id > 0"
+
+      - name: order_date
+        data_type: date
+        description: "The date when the order was placed."
+        tests:
+          - not_null
+        constraints:
+          - type: not_null
+
+      - name: status
+        data_type: text
+        description: "Current status of the order."
+        tests:
+          - not_null
+        constraints:
+          - type: not_null
+
+      - name: payment_methods
+        data_type: text
+        description: "The methods of payment used for the order."
+        tests:
+          - not_null
+        constraints:
+          - type: not_null
+
+      - name: amount
+        data_type: numeric
+        description: "The total amount paid for the order."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+        constraints:
+          - type: not_null

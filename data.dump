@@ -1,0 +1,397 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.8 (Debian 14.8-1.pgdg120+1)
+-- Dumped by pg_dump version 14.8 (Homebrew)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: raw_customers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.raw_customers (
+    id integer,
+    first_name text,
+    last_name text,
+    country_code text,
+    last_updated_dt date
+);
+
+--
+-- Name: raw_orders; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.raw_orders (
+    id integer,
+    user_id integer,
+    order_date date,
+    status text,
+    last_updated_dt date
+);
+
+--
+-- Name: raw_payments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.raw_payments (
+    id	integer,
+    order_id integer,
+    payment_method text,
+    amount numeric,
+    last_updated_dt date
+);
+
+
+--
+-- Data for Name: raw_customers; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.raw_customers (id, first_name, last_name, country_code, last_updated_dt) FROM stdin DELIMITER ',';
+1,Michael,P.,BR,2023-12-12
+2,Shawn,M.,GB,2023-12-12
+3,Kathleen,P.,US,2023-12-12
+4,Jimmy,C.,JP,2023-12-12
+5,Katherine,R.,CN,2023-12-12
+6,Sarah,R.,DE,2023-12-12
+7,Martin,M.,BR,2023-12-12
+8,Frank,R.,CN,2023-12-12
+9,Jennifer,F.,US,2023-12-12
+10,Henry,W.,IT,2023-12-12
+11,Fred,S.,BR,2023-12-12
+12,Amy,D.,JP,2023-12-12
+13,Kathleen,M.,DE,2023-12-12
+14,Steve,F.,IN,2023-12-12
+15,Teresa,H.,IT,2023-12-12
+16,Amanda,H.,US,2023-12-12
+17,Kimberly,R.,GB,2023-12-12
+18,Johnny,K.,CA,2023-12-12
+19,Virginia,F.,CA,2023-12-12
+20,Anna,A.,CA,2023-12-12
+21,Willie,H.,CN,2023-12-12
+22,Sean,H.,JP,2023-12-12
+23,Mildred,A.,IT,2023-12-12
+24,David,G.,DE,2023-12-12
+25,Victor,H.,IT,2023-12-12
+26,Aaron,R.,JP,2023-12-12
+27,Benjamin,B.,IT,2023-12-12
+28,Lisa,W.,JP,2023-12-12
+29,Benjamin,K.,IN,2023-12-12
+30,Christina,W.,DE,2023-12-12
+31,Jane,G.,BR,2023-12-12
+32,Thomas,O.,IT,2023-12-12
+33,Katherine,M.,IN,2023-12-12
+34,Jennifer,S.,BR,2023-12-12
+35,Sara,T.,GB,2023-12-12
+36,Harold,O.,FR,2023-12-12
+37,Shirley,J.,US,2023-12-12
+38,Dennis,J.,CN,2023-12-12
+39,Louise,W.,FR,2023-12-12
+40,Maria,A.,JP,2023-12-12
+41,Gloria,C.,JP,2023-12-12
+42,Diana,S.,US,2023-12-12
+43,Kelly,N.,US,2023-12-12
+44,Jane,R.,IN,2023-12-12
+45,Scott,B.,IN,2023-12-12
+46,Norma,C.,FR,2023-12-12
+47,Marie,P.,JP,2023-12-12
+48,Lillian,C.,JP,2023-12-12
+49,Judy,N.,CN,2023-12-12
+50,Billy,L.,US,2023-12-12
+51,Howard,R.,IN,2023-12-12
+52,Laura,F.,IT,2023-12-12
+53,Anne,B.,CA,2023-12-12
+54,Rose,M.,FR,2023-12-12
+55,Nicholas,R.,CN,2023-12-12
+56,Joshua,K.,IN,2023-12-12
+57,Paul,W.,CN,2023-12-12
+58,Kathryn,K.,CN,2023-12-12
+59,Adam,A.,BR,2023-12-12
+60,Norma,W.,CN,2023-12-12
+61,Timothy,R.,FR,2023-12-12
+62,Elizabeth,P.,CA,2023-12-12
+63,Edward,G.,GB,2023-12-12
+64,David,C.,IT,2023-12-12
+65,Brenda,W.,IN,2023-12-12
+66,Adam,W.,FR,2023-12-12
+67,Michael,H.,JP,2023-12-12
+68,Jesse,E.,DE,2023-12-12
+69,Janet,P.,DE,2023-12-12
+70,Helen,F.,CA,2023-12-12
+71,Gerald,C.,DE,2023-12-12
+72,Kathryn,O.,FR,2023-12-12
+73,Alan,B.,US,2023-12-12
+74,Harry,A.,DE,2023-12-12
+75,Andrea,H.,CA,2023-12-12
+76,Barbara,W.,GB,2023-12-12
+77,Anne,W.,DE,2023-12-12
+78,Harry,H.,GB,2023-12-12
+79,Jack,R.,IN,2023-12-12
+80,Phillip,H.,IN,2023-12-12
+81,Shirley,H.,DE,2023-12-12
+82,Arthur,D.,GB,2023-12-12
+83,Virginia,R.,IT,2023-12-12
+84,Christina,R.,US,2023-12-12
+85,Theresa,M.,CA,2023-12-12
+86,Jason,C.,JP,2023-12-12
+87,Phillip,B.,IT,2023-12-12
+88,Adam,T.,BR,2023-12-12
+89,Margaret,J.,US,2023-12-12
+90,Paul,P.,CA,2023-12-12
+91,Todd,W.,CA,2023-12-12
+92,Willie,O.,US,2023-12-12
+93,Frances,R.,BR,2023-12-12
+94,Gregory,H.,IT,2023-12-12
+95,Lisa,P.,DE,2023-12-12
+96,Jacqueline,A.,JP,2023-12-12
+97,Shirley,D.,FR,2023-12-12
+98,Nicole,M.,IT,2023-12-12
+99,Mary,G.,CA,2023-12-12
+100,Jean,M.,JP,2023-12-12
+\.
+
+--
+-- Data for Name: raw_orders; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.raw_orders (id, user_id, order_date, status, last_updated_dt) FROM stdin DELIMITER ',';
+1,1,2018-01-01,returned,2023-12-12
+2,3,2018-01-02,completed,2023-12-12
+3,94,2018-01-04,completed,2023-12-12
+4,50,2018-01-05,completed,2023-12-12
+5,64,2018-01-05,completed,2023-12-12
+6,54,2018-01-07,completed,2023-12-12
+7,88,2018-01-09,completed,2023-12-12
+8,2,2018-01-11,returned,2023-12-12
+9,53,2018-01-12,completed,2023-12-12
+10,7,2018-01-14,completed,2023-12-12
+11,99,2018-01-14,completed,2023-12-12
+12,59,2018-01-15,completed,2023-12-12
+13,84,2018-01-17,completed,2023-12-12
+14,40,2018-01-17,returned,2023-12-12
+15,25,2018-01-17,completed,2023-12-12
+16,39,2018-01-18,completed,2023-12-12
+17,71,2018-01-18,completed,2023-12-12
+18,64,2018-01-20,returned,2023-12-12
+19,54,2018-01-22,completed,2023-12-12
+20,20,2018-01-23,completed,2023-12-12
+21,71,2018-01-23,completed,2023-12-12
+22,86,2018-01-24,completed,2023-12-12
+23,22,2018-01-26,return_pending,2023-12-12
+24,3,2018-01-27,completed,2023-12-12
+25,51,2018-01-28,completed,2023-12-12
+26,32,2018-01-28,completed,2023-12-12
+27,94,2018-01-29,completed,2023-12-12
+28,8,2018-01-29,completed,2023-12-12
+29,57,2018-01-31,completed,2023-12-12
+30,69,2018-02-02,completed,2023-12-12
+31,16,2018-02-02,completed,2023-12-12
+32,28,2018-02-04,completed,2023-12-12
+33,42,2018-02-04,completed,2023-12-12
+34,38,2018-02-06,completed,2023-12-12
+35,80,2018-02-08,completed,2023-12-12
+36,85,2018-02-10,completed,2023-12-12
+37,1,2018-02-10,completed,2023-12-12
+38,51,2018-02-10,completed,2023-12-12
+39,26,2018-02-11,completed,2023-12-12
+40,33,2018-02-13,completed,2023-12-12
+41,99,2018-02-14,completed,2023-12-12
+42,92,2018-02-16,completed,2023-12-12
+43,31,2018-02-17,completed,2023-12-12
+44,66,2018-02-17,completed,2023-12-12
+45,22,2018-02-17,completed,2023-12-12
+46,6,2018-02-19,completed,2023-12-12
+47,50,2018-02-20,completed,2023-12-12
+48,27,2018-02-21,completed,2023-12-12
+49,35,2018-02-21,completed,2023-12-12
+50,51,2018-02-23,completed,2023-12-12
+51,71,2018-02-24,completed,2023-12-12
+52,54,2018-02-25,return_pending,2023-12-12
+53,34,2018-02-26,completed,2023-12-12
+54,54,2018-02-26,completed,2023-12-12
+55,18,2018-02-27,completed,2023-12-12
+56,79,2018-02-28,completed,2023-12-12
+57,93,2018-03-01,completed,2023-12-12
+58,22,2018-03-01,completed,2023-12-12
+59,30,2018-03-02,completed,2023-12-12
+60,12,2018-03-03,completed,2023-12-12
+61,63,2018-03-03,completed,2023-12-12
+62,57,2018-03-05,completed,2023-12-12
+63,70,2018-03-06,completed,2023-12-12
+64,13,2018-03-07,completed,2023-12-12
+65,26,2018-03-08,completed,2023-12-12
+66,36,2018-03-10,completed,2023-12-12
+67,79,2018-03-11,completed,2023-12-12
+68,53,2018-03-11,completed,2023-12-12
+69,3,2018-03-11,completed,2023-12-12
+70,8,2018-03-12,completed,2023-12-12
+71,42,2018-03-12,shipped,2023-12-12
+72,30,2018-03-14,shipped,2023-12-12
+73,19,2018-03-16,completed,2023-12-12
+74,9,2018-03-17,shipped,2023-12-12
+75,69,2018-03-18,completed,2023-12-12
+76,25,2018-03-20,completed,2023-12-12
+77,35,2018-03-21,shipped,2023-12-12
+78,90,2018-03-23,shipped,2023-12-12
+79,52,2018-03-23,shipped,2023-12-12
+80,11,2018-03-23,shipped,2023-12-12
+81,76,2018-03-23,shipped,2023-12-12
+82,46,2018-03-24,shipped,2023-12-12
+83,54,2018-03-24,shipped,2023-12-12
+84,70,2018-03-26,placed,2023-12-12
+85,47,2018-03-26,shipped,2023-12-12
+86,68,2018-03-26,placed,2023-12-12
+87,46,2018-03-27,placed,2023-12-12
+88,91,2018-03-27,shipped,2023-12-12
+89,21,2018-03-28,placed,2023-12-12
+90,66,2018-03-30,shipped,2023-12-12
+91,47,2018-03-31,placed,2023-12-12
+92,84,2018-04-02,placed,2023-12-12
+93,66,2018-04-03,placed,2023-12-12
+94,63,2018-04-03,placed,2023-12-12
+95,27,2018-04-04,placed,2023-12-12
+96,90,2018-04-06,placed,2023-12-12
+97,89,2018-04-07,placed,2023-12-12
+98,41,2018-04-07,placed,2023-12-12
+99,85,2018-04-09,placed,2023-12-12
+\.
+
+
+--
+-- Data for Name: raw_payments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.raw_payments (id, order_id, payment_method, amount, last_updated_dt) FROM stdin DELIMITER ',';
+1,1,credit_card,1000,2023-12-12
+2,2,credit_card,2000,2023-12-12
+3,3,coupon,100,2023-12-12
+4,4,coupon,2500,2023-12-12
+5,5,bank_transfer,1700,2023-12-12
+6,6,credit_card,600,2023-12-12
+7,7,credit_card,1600,2023-12-12
+8,8,credit_card,2300,2023-12-12
+9,9,gift_card,2300,2023-12-12
+10,9,bank_transfer,0,2023-12-12
+11,10,bank_transfer,2600,2023-12-12
+12,11,credit_card,2700,2023-12-12
+13,12,credit_card,100,2023-12-12
+14,13,credit_card,500,2023-12-12
+15,13,bank_transfer,1400,2023-12-12
+16,14,bank_transfer,300,2023-12-12
+17,15,coupon,2200,2023-12-12
+18,16,credit_card,1000,2023-12-12
+19,17,bank_transfer,200,2023-12-12
+20,18,credit_card,500,2023-12-12
+21,18,credit_card,800,2023-12-12
+22,19,gift_card,600,2023-12-12
+23,20,bank_transfer,1500,2023-12-12
+24,21,credit_card,1200,2023-12-12
+25,22,bank_transfer,800,2023-12-12
+26,23,gift_card,2300,2023-12-12
+27,24,coupon,2600,2023-12-12
+28,25,bank_transfer,2000,2023-12-12
+29,25,credit_card,2200,2023-12-12
+30,25,coupon,1600,2023-12-12
+31,26,credit_card,3000,2023-12-12
+32,27,credit_card,2300,2023-12-12
+33,28,bank_transfer,1900,2023-12-12
+34,29,bank_transfer,1200,2023-12-12
+35,30,credit_card,1300,2023-12-12
+36,31,credit_card,1200,2023-12-12
+37,32,credit_card,300,2023-12-12
+38,33,credit_card,2200,2023-12-12
+39,34,bank_transfer,1500,2023-12-12
+40,35,credit_card,2900,2023-12-12
+41,36,bank_transfer,900,2023-12-12
+42,37,credit_card,2300,2023-12-12
+43,38,credit_card,1500,2023-12-12
+44,39,bank_transfer,800,2023-12-12
+45,40,credit_card,1400,2023-12-12
+46,41,credit_card,1700,2023-12-12
+47,42,coupon,1700,2023-12-12
+48,43,gift_card,1800,2023-12-12
+49,44,gift_card,1100,2023-12-12
+50,45,bank_transfer,500,2023-12-12
+51,46,bank_transfer,800,2023-12-12
+52,47,credit_card,2200,2023-12-12
+53,48,bank_transfer,300,2023-12-12
+54,49,credit_card,600,2023-12-12
+55,49,credit_card,900,2023-12-12
+56,50,credit_card,2600,2023-12-12
+57,51,credit_card,2900,2023-12-12
+58,51,credit_card,100,2023-12-12
+59,52,bank_transfer,1500,2023-12-12
+60,53,credit_card,300,2023-12-12
+61,54,credit_card,1800,2023-12-12
+62,54,bank_transfer,1100,2023-12-12
+63,55,credit_card,2900,2023-12-12
+64,56,credit_card,400,2023-12-12
+65,57,bank_transfer,200,2023-12-12
+66,58,coupon,1800,2023-12-12
+67,58,gift_card,600,2023-12-12
+68,59,gift_card,2800,2023-12-12
+69,60,credit_card,400,2023-12-12
+70,61,bank_transfer,1600,2023-12-12
+71,62,gift_card,1400,2023-12-12
+72,63,credit_card,2900,2023-12-12
+73,64,bank_transfer,2600,2023-12-12
+74,65,credit_card,0,2023-12-12
+75,66,credit_card,2800,2023-12-12
+76,67,bank_transfer,400,2023-12-12
+77,67,credit_card,1900,2023-12-12
+78,68,credit_card,1600,2023-12-12
+79,69,credit_card,1900,2023-12-12
+80,70,credit_card,2600,2023-12-12
+81,71,credit_card,500,2023-12-12
+82,72,credit_card,2900,2023-12-12
+83,73,bank_transfer,300,2023-12-12
+84,74,credit_card,3000,2023-12-12
+85,75,credit_card,1900,2023-12-12
+86,76,coupon,200,2023-12-12
+87,77,credit_card,0,2023-12-12
+88,77,bank_transfer,1900,2023-12-12
+89,78,bank_transfer,2600,2023-12-12
+90,79,credit_card,1800,2023-12-12
+91,79,credit_card,900,2023-12-12
+92,80,gift_card,300,2023-12-12
+93,81,coupon,200,2023-12-12
+94,82,credit_card,800,2023-12-12
+95,83,credit_card,100,2023-12-12
+96,84,bank_transfer,2500,2023-12-12
+97,85,bank_transfer,1700,2023-12-12
+98,86,coupon,2300,2023-12-12
+99,87,gift_card,3000,2023-12-12
+100,87,credit_card,2600,2023-12-12
+101,88,credit_card,2900,2023-12-12
+102,89,bank_transfer,2200,2023-12-12
+103,90,bank_transfer,200,2023-12-12
+104,91,credit_card,1900,2023-12-12
+105,92,bank_transfer,1500,2023-12-12
+106,92,coupon,200,2023-12-12
+107,93,gift_card,2600,2023-12-12
+108,94,coupon,700,2023-12-12
+109,95,coupon,2400,2023-12-12
+110,96,gift_card,1700,2023-12-12
+111,97,bank_transfer,1400,2023-12-12
+112,98,bank_transfer,1000,2023-12-12
+113,99,credit_card,2400,2023-12-12
+\.
+
+--
+-- PostgreSQL database dump complete
+--
+

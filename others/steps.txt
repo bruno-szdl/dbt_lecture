@@ -1,0 +1,14 @@
+make up
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip3 install dbt-postgres
+export DBT_PROFILES_DIR=./zachs_shop/
+
+cd zachs_shop
+dbt debug
+
+#optional
+pip3 install dbt-metricflow
+

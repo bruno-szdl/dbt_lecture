@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: agg_orders
+    description: "This aggregated table summarizes orders by date, status, and payment method, providing the total amount for each combination."
+    columns:
+      - name: order_date
+        description: "The date when the orders were placed."
+
+      - name: status
+        description: "The status of the orders."
+
+      - name: total_amount
+        description: "The total amount for orders grouped by order_date, status, and payment_method."

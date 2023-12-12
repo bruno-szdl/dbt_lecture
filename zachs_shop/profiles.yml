@@ -1,0 +1,12 @@
+zachs_shop:
+  outputs:
+    dev:
+      dbname: postgres
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: dev
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev

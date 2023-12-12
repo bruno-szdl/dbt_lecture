@@ -1,0 +1,59 @@
+semantic_models:
+  #The name of the semantic model.
+  - name: orders
+    defaults:
+      agg_time_dimension: order_date
+    description: |
+      Order fact table. This table is at the order grain with one row per order.
+    #The name of the dbt model and schema
+    model: ref('fact_orders')
+
+    #Entities. These usually corespond to keys in the table.
+    entities:
+      - name: id
+        type: primary
+      - name: user_id
+        type: foreign
+
+    #Measures. These are the aggregations on the columns in the table.
+    measures:
+      - name: order_total
+        description: The total revenue for each order.
+        agg: sum
+        expr: amount
+      - name: order_count
+        agg: sum
+        expr: 1
+      - name: customers_with_orders
+        description: Distinct count of customers placing orders
+        agg: count_distinct
+        expr: user_id
+
+    #Dimensions. Either categorical or time. These add additional context to metrics. The typical querying pattern is Metric by Dimension.
+    dimensions:
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day
+      - name: status
+        type: categorical
+
+metrics:
+  - name: order_total
+    description: Sum of total order amount
+    type: simple
+    label: Order Total
+    type_params:
+      measure: order_total
+  - name: order_count
+    description: Count of orders
+    type: simple
+    label: Order Count
+    type_params:
+      measure: order_count
+  - name: customers_with_orders
+    description: Count of customers with orders
+    type: simple
+    label: Customers with Orders
+    type_params:
+      measure: customers_with_orders
